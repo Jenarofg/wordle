@@ -12,4 +12,7 @@ code {
     monospace;
 }
 
-
+.Bottom{
+  justify-content: center;
+  display: flex;
+}
