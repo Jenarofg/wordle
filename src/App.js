@@ -1,6 +1,6 @@
 import './App.css';
-import Square from './Square';
 import {useState} from 'react'
+import Row from './Row'
 
 export const solution ='CLASE';
 
@@ -16,6 +16,8 @@ function App() {
   const [currentAttempt, setCurrentAttempt] = useState(1);
   const [messageWinner, setMessageWinner] = useState("");
 
+  var num_columns=5
+  var num_rows=6
 
   const guesses = ["     ", "     ","     " , "     ", "     "];
 
@@ -26,22 +28,22 @@ function App() {
       let isAttempComplete=true;
       for(let i=0;i<5;i++)
       {
-        if(guesses[parameters.row-1].charAt(i)==" ")
+        if(guesses[parameters.row-1].charAt(i)===" ")
           {
             isAttempComplete=false;
             break;
           }
       }
-      if (isAttempComplete) 
+      if (isAttempComplete)  
         {
-          if(guesses[parameters.row-1] == solution)
+          if(guesses[parameters.row-1] === solution)
           {
-            setMessageWinner("CONGRATULATIONS");
+            setMessageWinner("ENHORABUENA HAS ACERTADO LA PALABRA");
             setCurrentAttempt(10); 
           }
           else 
           {
-            if (currentAttempt<5) 
+            if (currentAttempt<num_rows) 
               {
                 setCurrentAttempt(currentAttempt+1);
 
@@ -69,41 +71,11 @@ function App() {
       </header>
 
         <div className='board'>
-          <div id="row"  className='row' > 
-            <Square row="1" column="1" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="1" column="2" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="1" column="3" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="1" column="4" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="1" column="5" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-          </div>
-          <div id="row" className='row'  > 
-            <Square row="2" column="1" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="2" column="2"attempt={currentAttempt}  textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="2" column="3" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="2" column="4" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="2" column="5" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-          </div>
-          <div id="row" className='row'  > 
-            <Square row="3" column="1" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="3" column="2" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="3" column="3" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="3" column="4" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="3" column="5" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-          </div>
-          <div id="row" className='row'  > 
-            <Square row="4" column="1" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="4" column="2" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="4" column="3" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="4" column="4" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="4" column="5" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-          </div>
-          <div id="row" className='row'  > 
-            <Square row="5" column="1" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="5" column="2" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="5" column="3" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="5" column="4" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-            <Square row="5" column="5" attempt={currentAttempt} textUpdate={(e) =>handleSquareChange(e)}></Square>
-          </div>
+          <Row row="1" currentAttempt={currentAttempt} handleSquareChange={(e) =>handleSquareChange(e)}></Row>
+          <Row row="2" currentAttempt={currentAttempt} handleSquareChange={(e) =>handleSquareChange(e)}></Row>
+          <Row row="3" currentAttempt={currentAttempt} handleSquareChange={(e) =>handleSquareChange(e)}></Row>
+          <Row row="4" currentAttempt={currentAttempt} handleSquareChange={(e) =>handleSquareChange(e)}></Row>       
+          <Row row="5" currentAttempt={currentAttempt} handleSquareChange={(e) =>handleSquareChange(e)}></Row>
         </div>       
     </div>
 );
